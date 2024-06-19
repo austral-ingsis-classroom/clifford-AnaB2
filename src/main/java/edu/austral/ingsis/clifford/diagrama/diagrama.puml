@@ -1,0 +1,100 @@
+@startuml
+
+' FileSystem interface and implementation
+interface FileSystem {
+    +void mkdir(String name)
+    +void touch(String name)
+    +void cd(String path)
+    +void rm(String name, boolean recursive)
+    +List<String> ls(boolean ascending)
+    +String pwd()
+}
+
+class FileSystemImpl {
+    +void mkdir(String name)
+    +void touch(String name)
+    +void cd(String path)
+    +void rm(String name, boolean recursive)
+    +List<String> ls(boolean ascending)
+    +String pwd()
+}
+
+FileSystem <|.. FileSystemImpl
+FileSystemImpl --> Directory
+
+
+' Composite pattern classes
+interface FileSystemElement {
+    +String getName()
+    +String getPath()
+    +void setParent(Directory parent)
+    +Directory getParent()
+}
+
+class Directory {
+    -String name
+    -List<FileSystemElement> elements
+    -Directory parent
+    +void add(FileSystemElement element)
+    +FileSystemElement getSubDirectory(String name)
+    +void remove(String name, boolean recursive)
+    +List<String> list()
+}
+
+class File {
+    -String name
+    -Directory parent
+    +String getName()
+    +String getPath()
+    +void setParent(Directory parent)
+    +Directory getParent()
+}
+
+FileSystemElement <|.. Directory
+FileSystemElement <|.. File
+
+Directory o-- FileSystemElement
+
+' Command interface and concrete commands
+interface Command {
+    +String execute(FileSystem fileSystem, List<String> args)
+}
+
+class CdCommand
+class LsCommand
+class MkdirCommand
+class PwdCommand
+class RmCommand
+class TouchCommand
+
+Command <|.. CdCommand
+Command <|.. LsCommand
+Command <|.. MkdirCommand
+Command <|.. PwdCommand
+Command <|.. RmCommand
+Command <|.. TouchCommand
+
+' CommandFactory
+class CommandFactory {
+    +Command createCommand(String command)
+}
+
+' Invoker class
+class FileSystemRunnerImpl {
+    -FileSystem fileSystem
+    -CommandFactory commandFactory
+    +List<String> executeCommands(List<String> commands)
+}
+
+interface FileSystemRunner {
+    +List<String> executeCommands(List<String> commands)
+}
+
+CommandFactory --> Command
+
+FileSystemRunner <|.. FileSystemRunnerImpl
+
+FileSystemRunnerImpl --> CommandFactory
+FileSystemRunnerImpl --> FileSystem
+
+@enduml

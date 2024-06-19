@@ -48,37 +48,6 @@ public class FileSystemImpl implements FileSystem {
     }
   }
 
-  //
-  //    } else
-  //
-  //
-  //
-  //      if(path.startsWith("/")) {
-  //      // Absolute path
-  //      current = root;  // Start from root
-  //      String[] directories = path.substring(1).split("/");
-  //      for (String dir : directories) {
-  //        if (!dir.isEmpty()) {  // Skip the first empty string before the first "/"
-  //          FileSystemElement newCurrentElement = current.getSubDirectory(dir);
-  //          if (newCurrentElement instanceof Directory) {
-  //            current = (Directory) newCurrentElement;
-  //          } else {
-  //            throw new IllegalArgumentException("Directory does not exist");
-  //          }
-  //        }
-  //      }
-  //    }
-  //  else  {
-  //      // Relative path
-  //      FileSystemElement newCurrentElement = current.getSubDirectory(path);
-  //      if (newCurrentElement instanceof Directory) {
-  //        current = (Directory) newCurrentElement;
-  //      } else {
-  //        throw new IllegalArgumentException("Directory does not exist");
-  //      }
-  //    }
-  //  }
-
   @Override
   public void rm(String name, boolean recursive) {
     FileSystemElement element = current.getSubDirectory(name);
