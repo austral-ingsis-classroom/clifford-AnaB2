@@ -22,17 +22,11 @@ public class CommandFactory {
       case "rm":
         return new RmCommand();
 
-       case "pwd":
+      case "pwd":
         return new PwdCommand();
 
       default:
         throw new IllegalArgumentException("Command not found");
     }
   }
-
-
-
-
-
-
 }

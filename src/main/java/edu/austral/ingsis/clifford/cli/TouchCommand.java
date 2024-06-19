@@ -17,7 +17,5 @@ public class TouchCommand implements Command {
 
     fs.touch(filename);
     return "'" + filename + "' file created";
-
-
   }
 }

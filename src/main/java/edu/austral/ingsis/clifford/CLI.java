@@ -8,32 +8,22 @@ public class CLI {
   private final FileSystem fs;
   private final CommandFactory commandFactory;
 
-
   public CLI(FileSystem fs, CommandFactory commandFactory) {
     this.fs = fs;
     this.commandFactory = commandFactory;
   }
 
-
-  public void run(){
+  public void run() {
     Scanner scanner = new Scanner(System.in);
-    while (true){
+    while (true) {
       System.out.print("$ ");
       String line = scanner.nextLine();
       String[] parts = line.split(" ");
       String commandName = parts[0];
-      List<String> args = List.of(parts).subList(1,parts.length);
+      List<String> args = List.of(parts).subList(1, parts.length);
       Command command = commandFactory.createCommand(commandName);
-      String result = command.execute(fs,args);
+      String result = command.execute(fs, args);
       System.out.println(result);
-
-
     }
-
-
   }
-
-
-
-
 }

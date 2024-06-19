@@ -26,7 +26,7 @@ public class FileSystemImpl implements FileSystem {
   @Override
   public void cd(String path) {
     if (path.equals("..")) {
-      current = root;  // Go to root
+      current = root; // Go to root
       if (current.getParent() != null) {
         current = current.getParent();
       }
@@ -43,43 +43,41 @@ public class FileSystemImpl implements FileSystem {
         } else {
           throw new IllegalArgumentException("Directory does not exist");
         }
-
-
       }
       current = newCurrent;
+    }
+  }
 
-    } }
-//
-//    } else
-//
-//
-//
-//      if(path.startsWith("/")) {
-//      // Absolute path
-//      current = root;  // Start from root
-//      String[] directories = path.substring(1).split("/");
-//      for (String dir : directories) {
-//        if (!dir.isEmpty()) {  // Skip the first empty string before the first "/"
-//          FileSystemElement newCurrentElement = current.getSubDirectory(dir);
-//          if (newCurrentElement instanceof Directory) {
-//            current = (Directory) newCurrentElement;
-//          } else {
-//            throw new IllegalArgumentException("Directory does not exist");
-//          }
-//        }
-//      }
-//    }
-//  else  {
-//      // Relative path
-//      FileSystemElement newCurrentElement = current.getSubDirectory(path);
-//      if (newCurrentElement instanceof Directory) {
-//        current = (Directory) newCurrentElement;
-//      } else {
-//        throw new IllegalArgumentException("Directory does not exist");
-//      }
-//    }
-//  }
-
+  //
+  //    } else
+  //
+  //
+  //
+  //      if(path.startsWith("/")) {
+  //      // Absolute path
+  //      current = root;  // Start from root
+  //      String[] directories = path.substring(1).split("/");
+  //      for (String dir : directories) {
+  //        if (!dir.isEmpty()) {  // Skip the first empty string before the first "/"
+  //          FileSystemElement newCurrentElement = current.getSubDirectory(dir);
+  //          if (newCurrentElement instanceof Directory) {
+  //            current = (Directory) newCurrentElement;
+  //          } else {
+  //            throw new IllegalArgumentException("Directory does not exist");
+  //          }
+  //        }
+  //      }
+  //    }
+  //  else  {
+  //      // Relative path
+  //      FileSystemElement newCurrentElement = current.getSubDirectory(path);
+  //      if (newCurrentElement instanceof Directory) {
+  //        current = (Directory) newCurrentElement;
+  //      } else {
+  //        throw new IllegalArgumentException("Directory does not exist");
+  //      }
+  //    }
+  //  }
 
   @Override
   public void rm(String name, boolean recursive) {
@@ -105,7 +103,6 @@ public class FileSystemImpl implements FileSystem {
   @Override
   public String pwd() {
 
-      return current.getPath();
-
+    return current.getPath();
   }
 }

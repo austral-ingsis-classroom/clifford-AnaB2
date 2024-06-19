@@ -39,7 +39,7 @@ public class Directory implements FileSystemElement {
 
   public void remove(String name, boolean recursive) {
     FileSystemElement element = getSubDirectory(name);
-    if(element instanceof File){
+    if (element instanceof File) {
       elements.remove(element);
     }
 
@@ -48,7 +48,7 @@ public class Directory implements FileSystemElement {
       if (!directory.elements.isEmpty() && !recursive) {
         throw new IllegalArgumentException("Directory is not empty");
       } else if (!directory.elements.isEmpty()) {
-        for(FileSystemElement e : new ArrayList<>(directory.elements)){
+        for (FileSystemElement e : new ArrayList<>(directory.elements)) {
           if (e instanceof Directory) {
             directory.remove(e.getName(), true);
           } else {
@@ -85,6 +85,4 @@ public class Directory implements FileSystemElement {
   public Directory getParent() {
     return parent;
   }
-
-
 }
